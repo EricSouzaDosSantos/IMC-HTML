@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Eric Souza">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>BMI</title>
+</head>
+
+<body>
+
+    <main>
+
+        <h1>calculator BMI</h1>
+
+        <section>
+
+            <h2>information registration</h2>
+
+            <form method="post" onsubmit="CalculatorBMI(event)">
+
+                <div class="fild-form">
+
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" placeholder="enter your full name">
+
+                </div>
+
+                <div class="fild-form">
+
+                    <label for="height">Height:</label>
+                    <input type="number" name="height" id="height" step="0.010" placeholder="enter your height, Ex: 1.85">
+
+                </div>
+
+                <div class="fild-form">
+
+                    <label for="weight">Weight:</label>
+                    <input type="number" name="weight" id="weight" step="0.1" placeholder="Enter your weight in kg. Ex: 85.6">
+
+                </div>
+
+                <div class="fild-form">
+
+                    <label for="age">Age:</label>
+                    <input type="number" name="age" id="age" placeholder="enter your age. Ex: 15">
+
+                </div>
+
+                <div class="fild-buttons">
+
+                    <button type="reset">Cancel</button>
+                    <button type="submit">Confirm</button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <h2>Registered users</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name:</th>
+                        <th>Height:</th>
+                        <th>Weight:</th>
+                        <th>Age:</th>
+                        <th>BMI value:</th>
+                        <th>Classification BMI:</th>
+                        <th>Date Register:</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="table-body">
+
+
+
+                </tbody>
+
+            </table>
+
+            <button class="button-table" onclick="deleteRecord()">Delete Record</button>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

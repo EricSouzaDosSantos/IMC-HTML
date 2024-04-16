@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --font: "Roboto", sans-serif;
+}
+
+body{
+    font-family: var(--font);
+    background-color: #f2f2f7;
+}
+
+main{
+    width: 70%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+section{
+    background-color: white;
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 10px 10px 15px #00000025;
+}
+
+form{
+    display: flex;
+    height: 300px;
+    margin: 30px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.fild-form{
+    height: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input{
+    height: 30px;
+    border: solid 1px #6d6d6d;
+    border-radius: 6px;
+    font-weight: medium;
+    caret-color: aquamarine;
+    text-indent: 5px;
+}
+
+input::placeholder{
+    color: #3c3c43;
+}
+
+input[type="number"]{
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+    display: none;
+    margin: 0;
+}
+
+button{
+    height: 30px;
+    width: 300px;
+    margin-right: 30px;
+    border: none;
+    border-radius: 6px;
+    font-weight: medium;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+button[type="submit"]{
+    background-color: #30d150;
+    color: #fff;
+}
+
+button[type="submit"]:hover{
+    background-color: #34c159;
+}
+
+button[type="reset"]{
+    background-color: #30d150;
+    color: #fff;
+}
+
+button[type="reset"]:hover{
+    background-color: red;
+}
+
+table{
+    width: 100%;
+    margin: 30px 0;
+    border: none;
+    border-collapse: collapse;
+}
+
+caption{
+    font-size: 1.2rem;
+}
+
+caption, th{
+    text-align: left;
+}
+
+tbody>tr:nth-child(odd){
+    background-color: #f2f2f7;
+}
+
+th,
+tr,
+td{
+    border: none;
+    
+}
+
+caption,
+th,
+td{
+    padding: 15px;
+}
+
+.button-table{
+    background-color: #ff453A;
+    color: white;
+}
+
+.button-table:hover{
+    background-color: #ff3b3b;
+}
+
+.row-message{
+    text-align: center;
+}
