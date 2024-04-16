@@ -1,11 +1,26 @@
+const CalcValues = (event) =>{
 
-const GetValues = (event) => {
     event.preventDefault()
 
+    let dataUser = GetValues() 
+
+    let BMI = CalculatorBMI(dataUser.height, dataUser.weight)
+
+    let classification = ClassificationBMI(BMI)
+
+    let dataUsersComplet = OrganizeData(dataUser, BMI, classification)
+
+    RegisterUser(dataUsersComplet)
+    
+    window.location.reload();
+}
+
+const GetValues = () => {
+
     const name = document.getElementById('name').value
-    const height = document.getElementById('height').value
-    const weight = document.getElementById('weight').value
-    const age = document.getElementById('age').value
+    const height = Number(document.getElementById('height').value)
+    const weight = Number(document.getElementById('weight').value)
+    const age = Number(document.getElementById('age').value)
     const dataUser = {
         name: name,
         height: height,
@@ -17,9 +32,9 @@ const GetValues = (event) => {
 
 }
 
-const CalculatorBMI = (event) => {
+const CalculatorBMI = (height, weight) => {
 
-    const BMI = weight / (height ** 2)
+    const BMI = parseFloat(weight / (height ** 2))
 
 
     return BMI
@@ -28,52 +43,36 @@ const CalculatorBMI = (event) => {
 
 const ClassificationBMI = (BMI) => {
 
-    switch (BMI) {
-        case BMI < 18.5:
+    if (BMI < 18.5) {
 
-            return " you are underweight"
+        return "you are underweight";
 
-            break;
+    } else if (BMI >= 18.5 && BMI <= 24.9) {
 
-        case BMI >= 18.5 && BMI <= 24.9:
+        return "your weight is normal";
 
-            return " your weight is normal"
+    } else if (BMI >= 25.0 && BMI <= 29.9) {
 
-            break;
+        return "you are overweight";
 
-        case BMI >= 25.0 && BMI <= 29.9:
+    } else if (BMI >= 30.0 && BMI <= 34.9) {
 
-            return " you are overweight"
+        return "you have grade 1 obesity";
 
-            break;
+    } else if (BMI >= 35.0 && BMI <= 39.9) {
 
-        case BMI >= 30.0 && BMI <= 34.9:
+        return "you have grade 2 obesity";
 
-            return " you have grade 1 obesity"
+    } else if (BMI >= 40.0) {
 
-            break;
+        return "you have grade 3 obesity";
 
+    } else {
 
-        case BMI >= 35.0 && BMI <= 39.9:
-
-            return " you have grade 2 obesity"
-
-            break;
-
-        case BMI >= 40.0:
-
-            return " you have grade 3 obesity"
-
-            break;
-
-        default:
-
-            return "erro ao calcular resposta"
-
-            break;
+        return "erro ao calcular resposta";
 
     }
-
+    
 }
 
 const OrganizeData = (dataUser, CalculatorBMI, ClassificationBMI) => {
@@ -82,7 +81,7 @@ const OrganizeData = (dataUser, CalculatorBMI, ClassificationBMI) => {
     const dataUsersComplet = {
 
         ...dataUser,
-        imc: CalculatorBMI.toFixed(2),
+        bmi: parseFloat(CalculatorBMI.toFixed(2)),
         classificationBMIUsers: ClassificationBMI,
         Date: currentDateTime
     }
@@ -97,13 +96,13 @@ const RegisterUser = (users) => {
 
     let listUsers = []
 
-    if (localStorage.getItem("UsersRegisted")) {
-        listUsers = JSON.parse(localStorage.getItem("UsersRegisted"))
+    if (localStorage.getItem("UsersRegistered")) {
+        listUsers = JSON.parse(localStorage.getItem("UsersRegistered"))
     }
 
     listUsers.push(users)
 
-    localStorage.setItem("UsersRegisted", JSON.stringify(listUsers))
+    localStorage.setItem("UsersRegistered", JSON.stringify(listUsers))
 
 }
 
@@ -111,8 +110,8 @@ const LoadUser = () => {
 
     let listUsers = []
 
-    if (localStorage.getItem("UsersRegisted")) {
-        listUsers = JSON.push(localStorage.getItem("UsersRegisted"))
+    if (localStorage.getItem("UsersRegistered")) {
+        listUsers = JSON.parse(localStorage.getItem("UsersRegistered"))
     }
 
     if (listUsers.length == 0) {
@@ -120,10 +119,61 @@ const LoadUser = () => {
         table.innerHTML = `<tr>
         <td colspan="7" class="row-message"> no registered users </td>
         </tr>`
-    }else{
+    } else {
         BuildTable(listUsers)
     }
 
 }
 
+
 window.addEventListener('DOMContentLoaded', () => LoadUser())
+
+const BuildTable = (listUsers) => {
+
+    let table = document.getElementById('table-body');
+
+    let template = "";
+
+    listUsers.forEach(people => {
+
+        template += `
+        
+        <tr>
+            
+            <td data-cell="name">
+                ${people.name}
+            </td>
+
+            <td data-cell="height">
+                ${people.height}
+            </td>
+
+            <td datae-cell="weight">
+                ${people.weight}
+            </td>
+
+            <td data-cell="age">
+                ${people.age}
+            </td>
+
+            <td data-cell="BMI">
+                ${people.bmi}
+            </td>
+
+            <td data-cell="classification">
+                ${people.classificationBMIUsers}
+            </td>
+        
+            <td data-cell="registered-date">
+                ${people.Date}
+            </td>
+
+            </tr>
+
+        `
+
+    });
+
+    table.innerHTML = template
+
+}
