@@ -177,3 +177,13 @@ const BuildTable = (listUsers) => {
     table.innerHTML = template
 
 }
+
+const deleteRecord = () => {
+
+    // localStorage.setItem("UsersRegistered")
+
+    localStorage.clear()
+
+    window.location.reload();
+
+}
