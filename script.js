@@ -21,11 +21,13 @@ const GetValues = () => {
     const height = Number(document.getElementById('height').value)
     const weight = Number(document.getElementById('weight').value)
     const age = Number(document.getElementById('age').value)
+    const id = Math.floor(Math.random()*100)
     const dataUser = {
         name: name,
         height: height,
         weight: weight,
-        age: age
+        age: age,
+        id: id
     }
 
     return dataUser;
@@ -168,6 +170,10 @@ const BuildTable = (listUsers) => {
                 ${people.Date}
             </td>
 
+            <td data-cell="button">
+               <button class="button-table" onclick="DeleteUser(${people.Date})">Delete</button>
+            </td>
+
             </tr>
 
         `
@@ -176,6 +182,13 @@ const BuildTable = (listUsers) => {
 
     table.innerHTML = template
 
+}
+
+const DeleteUser = (id) => {
+    let listUsers = JSON.parse(localStorage.getItem("userRegistration"))
+    listUsers = listUsers.filter(user => user.id !== id)
+    localStorage.setItem("userRegistration", JSON.stringify(listUsers))
+    LoadUser()
 }
 
 const deleteRecord = () => {
