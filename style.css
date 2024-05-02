@@ -135,6 +135,7 @@ td{
 .button-table{
     background-color: #ff453A;
     color: white;
+    width: 100%;
 }
 
 .button-table:hover{

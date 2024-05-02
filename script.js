@@ -171,7 +171,7 @@ const BuildTable = (listUsers) => {
             </td>
 
             <td data-cell="button">
-               <button class="button-table" onclick="DeleteUser(${people.Date})">Delete</button>
+               <button class="button-table" onclick="DeleteUser(${people.id})">Delete</button>
             </td>
 
             </tr>
@@ -185,9 +185,9 @@ const BuildTable = (listUsers) => {
 }
 
 const DeleteUser = (id) => {
-    let listUsers = JSON.parse(localStorage.getItem("userRegistration"))
+    let listUsers = JSON.parse(localStorage.getItem("UsersRegistered"))
     listUsers = listUsers.filter(user => user.id !== id)
-    localStorage.setItem("userRegistration", JSON.stringify(listUsers))
+    localStorage.setItem("UsersRegistered", JSON.stringify(listUsers))
     LoadUser()
 }
 
